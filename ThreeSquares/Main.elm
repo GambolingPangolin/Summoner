@@ -8,14 +8,13 @@ import Svg exposing (..)
 import Svg.Attributes exposing (..)
 import List as L
 import String
+import Debug exposing (log)
 
 -- DATA specifications
 
 type alias Model = { pos1 : Float, pos2 : Float }
 
-type Msg =
-    Pos1 Float
-    | Pos2 Float
+type Msg = Position (Int,Int)
 
 -- MAIN declaration
 
@@ -35,43 +34,35 @@ model = { pos1 = 10, pos2 = 33 }
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        Pos1 x ->
-            {model | pos1 = x}
-        Pos2 x ->
-            {model | pos2 = x}
+        Position (x,y) ->
+              {model | pos1 = toFloat (x % 200) / 2, pos2 = toFloat (y % 200) / 2 }
 
 -- VIEW
 
 view : Model -> Html Msg
 view model =
     div [class "main"] [
-        div [class "canvas"] [motif model.pos1 model.pos2 ]
-        , div [class "controls"] [
-            slider model.pos1 Pos1
-            , slider model.pos2 Pos2
-            ]
+        div [class "canvas"] [motif model ]
         ]
 
-motif : Float -> Float -> Html Msg
-motif x y =
+motif : Model -> Html Msg
+motif model =
     let
         getPoints p = [(0,100-p),(p,0),(100,p),(100-p,100)]
                 |> L.map (\(x,y)-> (toString x) ++ "," ++ (toString y)) 
                 |> L.intersperse " "
                 |> String.concat
     in
-    svg [ viewBox "0 0 100 100" ] [
+    svg [ viewBox "0 0 100 100", E.on "mousemove" mousePos ] [
         rect [width "100", height "100"] []
-        , polygon [class "s1", points (getPoints x)] []
-        , polygon [class "s2", points (getPoints y)] []
+        , polygon [class "s1", points (getPoints model.pos1)] []
+        , polygon [class "s2", points (getPoints model.pos2)] []
         ]
 
-slider : Float -> (Float -> Msg) -> Html Msg
-slider x f =
-    svg [ viewBox "0 0 100 10", onSlide f] [
-        line [ x1 "0", y1 "5", x2 "100", y2 "5" ] []
-        , circle [ x |> toString |> cx, cy "5", r "2" ] []
-        ]
-
-onSlide : (Float -> Msg) -> Html.Attribute Msg
-onSlide m = E.onClick (m 60)
+mousePos : JD.Decoder Msg 
+mousePos = 
+  let
+     xy = JD.map2 (,) (JD.field "x" JD.int) (JD.field "y" JD.int)
+  in
+     JD.map Position xy
+     

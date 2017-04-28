@@ -8601,122 +8601,109 @@ var _elm_lang$svg$Svg_Attributes$accumulate = _elm_lang$virtual_dom$VirtualDom$a
 var _elm_lang$svg$Svg_Attributes$accelerate = _elm_lang$virtual_dom$VirtualDom$attribute('accelerate');
 var _elm_lang$svg$Svg_Attributes$accentHeight = _elm_lang$virtual_dom$VirtualDom$attribute('accent-height');
 
-var _user$project$Main$onSlide = function (m) {
-	return _elm_lang$html$Html_Events$onClick(
-		m(60));
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				pos1: _elm_lang$core$Basics$toFloat(
+					A2(_elm_lang$core$Basics_ops['%'], _p0._0._0, 200)) / 2,
+				pos2: _elm_lang$core$Basics$toFloat(
+					A2(_elm_lang$core$Basics_ops['%'], _p0._0._1, 200)) / 2
+			});
+	});
+var _user$project$Main$model = {pos1: 10, pos2: 33};
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {pos1: a, pos2: b};
+	});
+var _user$project$Main$Position = function (a) {
+	return {ctor: 'Position', _0: a};
 };
-var _user$project$Main$slider = F2(
-	function (x, f) {
-		return A2(
-			_elm_lang$svg$Svg$svg,
-			{
-				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 100 10'),
-				_1: {
-					ctor: '::',
-					_0: _user$project$Main$onSlide(f),
-					_1: {ctor: '[]'}
-				}
-			},
-			{
-				ctor: '::',
-				_0: A2(
-					_elm_lang$svg$Svg$line,
+var _user$project$Main$mousePos = function () {
+	var xy = A3(
+		_elm_lang$core$Json_Decode$map2,
+		F2(
+			function (v0, v1) {
+				return {ctor: '_Tuple2', _0: v0, _1: v1};
+			}),
+		A2(_elm_lang$core$Json_Decode$field, 'x', _elm_lang$core$Json_Decode$int),
+		A2(_elm_lang$core$Json_Decode$field, 'y', _elm_lang$core$Json_Decode$int));
+	return A2(_elm_lang$core$Json_Decode$map, _user$project$Main$Position, xy);
+}();
+var _user$project$Main$motif = function (model) {
+	var getPoints = function (p) {
+		return _elm_lang$core$String$concat(
+			A2(
+				_elm_lang$core$List$intersperse,
+				' ',
+				A2(
+					_elm_lang$core$List$map,
+					function (_p1) {
+						var _p2 = _p1;
+						return A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Basics$toString(_p2._0),
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								',',
+								_elm_lang$core$Basics$toString(_p2._1)));
+					},
 					{
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$x1('0'),
+						_0: {ctor: '_Tuple2', _0: 0, _1: 100 - p},
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$y1('5'),
+							_0: {ctor: '_Tuple2', _0: p, _1: 0},
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$x2('100'),
+								_0: {ctor: '_Tuple2', _0: 100, _1: p},
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$y2('5'),
+									_0: {ctor: '_Tuple2', _0: 100 - p, _1: 100},
 									_1: {ctor: '[]'}
 								}
 							}
 						}
-					},
-					{ctor: '[]'}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$svg$Svg$circle,
-						{
-							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$cx(
-								_elm_lang$core$Basics$toString(x)),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$cy('5'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$r('2'),
-									_1: {ctor: '[]'}
-								}
-							}
-						},
-						{ctor: '[]'}),
-					_1: {ctor: '[]'}
-				}
-			});
-	});
-var _user$project$Main$motif = F2(
-	function (x, y) {
-		var getPoints = function (p) {
-			return _elm_lang$core$String$concat(
-				A2(
-					_elm_lang$core$List$intersperse,
-					' ',
-					A2(
-						_elm_lang$core$List$map,
-						function (_p0) {
-							var _p1 = _p0;
-							return A2(
-								_elm_lang$core$Basics_ops['++'],
-								_elm_lang$core$Basics$toString(_p1._0),
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									',',
-									_elm_lang$core$Basics$toString(_p1._1)));
-						},
-						{
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 0, _1: 100 - p},
-							_1: {
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: p, _1: 0},
-								_1: {
-									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 100, _1: p},
-									_1: {
-										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 100 - p, _1: 100},
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						})));
-		};
-		return A2(
-			_elm_lang$svg$Svg$svg,
-			{
+					})));
+	};
+	return A2(
+		_elm_lang$svg$Svg$svg,
+		{
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 100 100'),
+			_1: {
 				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 100 100'),
+				_0: A2(_elm_lang$html$Html_Events$on, 'mousemove', _user$project$Main$mousePos),
 				_1: {ctor: '[]'}
-			},
-			{
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$svg$Svg$rect,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$width('100'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$height('100'),
+						_1: {ctor: '[]'}
+					}
+				},
+				{ctor: '[]'}),
+			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$svg$Svg$rect,
+					_elm_lang$svg$Svg$polygon,
 					{
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$width('100'),
+						_0: _elm_lang$svg$Svg_Attributes$class('s1'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$height('100'),
+							_0: _elm_lang$svg$Svg_Attributes$points(
+								getPoints(model.pos1)),
 							_1: {ctor: '[]'}
 						}
 					},
@@ -8727,58 +8714,19 @@ var _user$project$Main$motif = F2(
 						_elm_lang$svg$Svg$polygon,
 						{
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$class('s1'),
+							_0: _elm_lang$svg$Svg_Attributes$class('s2'),
 							_1: {
 								ctor: '::',
 								_0: _elm_lang$svg$Svg_Attributes$points(
-									getPoints(x)),
+									getPoints(model.pos2)),
 								_1: {ctor: '[]'}
 							}
 						},
 						{ctor: '[]'}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$svg$Svg$polygon,
-							{
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$class('s2'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$points(
-										getPoints(y)),
-									_1: {ctor: '[]'}
-								}
-							},
-							{ctor: '[]'}),
-						_1: {ctor: '[]'}
-					}
+					_1: {ctor: '[]'}
 				}
-			});
-	});
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p2 = msg;
-		if (_p2.ctor === 'Pos1') {
-			return _elm_lang$core$Native_Utils.update(
-				model,
-				{pos1: _p2._0});
-		} else {
-			return _elm_lang$core$Native_Utils.update(
-				model,
-				{pos2: _p2._0});
-		}
-	});
-var _user$project$Main$model = {pos1: 10, pos2: 33};
-var _user$project$Main$Model = F2(
-	function (a, b) {
-		return {pos1: a, pos2: b};
-	});
-var _user$project$Main$Pos2 = function (a) {
-	return {ctor: 'Pos2', _0: a};
-};
-var _user$project$Main$Pos1 = function (a) {
-	return {ctor: 'Pos1', _0: a};
+			}
+		});
 };
 var _user$project$Main$view = function (model) {
 	return A2(
@@ -8799,29 +8747,10 @@ var _user$project$Main$view = function (model) {
 				},
 				{
 					ctor: '::',
-					_0: A2(_user$project$Main$motif, model.pos1, model.pos2),
+					_0: _user$project$Main$motif(model),
 					_1: {ctor: '[]'}
 				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{
-						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$class('controls'),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: A2(_user$project$Main$slider, model.pos1, _user$project$Main$Pos1),
-						_1: {
-							ctor: '::',
-							_0: A2(_user$project$Main$slider, model.pos2, _user$project$Main$Pos2),
-							_1: {ctor: '[]'}
-						}
-					}),
-				_1: {ctor: '[]'}
-			}
+			_1: {ctor: '[]'}
 		});
 };
 var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
