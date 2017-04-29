@@ -21,6 +21,15 @@
 	fill: rgba(255,255,100,0.4);
 }
 
+div.complist {
+	margin-top: 10px;
+}
+
+.complist span:hover {
+	background: black;
+	color: white;
+}
+
 div.controls {
 	float: left;
 }
