@@ -1,26 +1,29 @@
-
 .main {
-	text-align: center;
 	margin-top: 50px;
+	margin-left: 25%;
 }
 
 .canvas svg {
 	width: 400px;
+	float: left;
 }
 
 .canvas rect {
-	stroke: grey;
-	stroke-width: 1;
 	fill: rgb(0,200,200);
 }
 
 .canvas polygon {
-	stroke: white;
-	stroke-width: 0.5;
 	fill: rgba(255,255,100,0.4);
 }
 
-.canvas circle {
-	stroke: red;
-	fill: red;
+div.controls {
+	float: left;
+}
+
+.controls div {
+	width:20px;
+	height: 400px;
+	margin-left:20px;
+	display: block;
+	float: left;
 }

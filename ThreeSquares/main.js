@@ -8601,37 +8601,117 @@ var _elm_lang$svg$Svg_Attributes$accumulate = _elm_lang$virtual_dom$VirtualDom$a
 var _elm_lang$svg$Svg_Attributes$accelerate = _elm_lang$virtual_dom$VirtualDom$attribute('accelerate');
 var _elm_lang$svg$Svg_Attributes$accentHeight = _elm_lang$virtual_dom$VirtualDom$attribute('accent-height');
 
+var _user$project$Main$mousePos = A3(
+	_elm_lang$core$Json_Decode$map2,
+	F2(
+		function (v0, v1) {
+			return {ctor: '_Tuple2', _0: v0, _1: v1};
+		}),
+	A2(_elm_lang$core$Json_Decode$field, 'pageX', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode$field, 'pageY', _elm_lang$core$Json_Decode$int));
+var _user$project$Main$onMouseMove = function (f) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mousemove',
+		A2(_elm_lang$core$Json_Decode$map, f, _user$project$Main$mousePos));
+};
+var _user$project$Main$toColor = function (x) {
+	var f = function (x) {
+		return ((255 * (400 - (2 * _elm_lang$core$Basics$abs(200 - x)))) / 400) | 0;
+	};
+	var r = f(x - 133);
+	var g = f(x);
+	var b = f(x + 133);
+	return function (s) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'rgba(',
+			A2(_elm_lang$core$Basics_ops['++'], s, ',0.4)'));
+	}(
+		_elm_lang$core$String$concat(
+			A2(
+				_elm_lang$core$List$intersperse,
+				',',
+				A2(
+					_elm_lang$core$List$map,
+					_elm_lang$core$Basics$toString,
+					{
+						ctor: '::',
+						_0: r,
+						_1: {
+							ctor: '::',
+							_0: g,
+							_1: {
+								ctor: '::',
+								_0: b,
+								_1: {ctor: '[]'}
+							}
+						}
+					}))));
+};
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p0 = msg;
-		return _elm_lang$core$Native_Utils.update(
-			model,
-			{
-				pos1: _elm_lang$core$Basics$toFloat(
-					A2(_elm_lang$core$Basics_ops['%'], _p0._0._0, 200)) / 2,
-				pos2: _elm_lang$core$Basics$toFloat(
-					A2(_elm_lang$core$Basics_ops['%'], _p0._0._1, 200)) / 2
-			});
+		var _p0 = {ctor: '_Tuple2', _0: model.$static, _1: msg};
+		_v0_4:
+		do {
+			if (_p0.ctor === '_Tuple2') {
+				switch (_p0._1.ctor) {
+					case 'ToggleStatic':
+						return _elm_lang$core$Native_Utils.update(
+							model,
+							{$static: !model.$static});
+					case 'Canvas':
+						if ((_p0._0 === false) && (_p0._1._0.ctor === '_Tuple2')) {
+							return _elm_lang$core$Native_Utils.update(
+								model,
+								{
+									pos1: (A2(_elm_lang$core$Basics_ops['%'], _p0._1._0._0, 400) / 4) | 0,
+									pos2: (A2(_elm_lang$core$Basics_ops['%'], _p0._1._0._1, 400) / 4) | 0
+								});
+						} else {
+							break _v0_4;
+						}
+					case 'Outer':
+						if ((_p0._0 === false) && (_p0._1._0.ctor === '_Tuple2')) {
+							return _elm_lang$core$Native_Utils.update(
+								model,
+								{
+									outerColor: A2(_elm_lang$core$Basics_ops['%'], _p0._1._0._1, 400)
+								});
+						} else {
+							break _v0_4;
+						}
+					default:
+						if ((_p0._0 === false) && (_p0._1._0.ctor === '_Tuple2')) {
+							return _elm_lang$core$Native_Utils.update(
+								model,
+								{
+									innerColor: A2(_elm_lang$core$Basics_ops['%'], _p0._1._0._1, 400)
+								});
+						} else {
+							break _v0_4;
+						}
+				}
+			} else {
+				break _v0_4;
+			}
+		} while(false);
+		return model;
 	});
-var _user$project$Main$model = {pos1: 10, pos2: 33};
-var _user$project$Main$Model = F2(
-	function (a, b) {
-		return {pos1: a, pos2: b};
+var _user$project$Main$model = {$static: true, pos1: 10, pos2: 33, outerColor: 150, innerColor: 250};
+var _user$project$Main$Model = F5(
+	function (a, b, c, d, e) {
+		return {$static: a, pos1: b, pos2: c, outerColor: d, innerColor: e};
 	});
-var _user$project$Main$Position = function (a) {
-	return {ctor: 'Position', _0: a};
+var _user$project$Main$Inner = function (a) {
+	return {ctor: 'Inner', _0: a};
 };
-var _user$project$Main$mousePos = function () {
-	var xy = A3(
-		_elm_lang$core$Json_Decode$map2,
-		F2(
-			function (v0, v1) {
-				return {ctor: '_Tuple2', _0: v0, _1: v1};
-			}),
-		A2(_elm_lang$core$Json_Decode$field, 'x', _elm_lang$core$Json_Decode$int),
-		A2(_elm_lang$core$Json_Decode$field, 'y', _elm_lang$core$Json_Decode$int));
-	return A2(_elm_lang$core$Json_Decode$map, _user$project$Main$Position, xy);
-}();
+var _user$project$Main$Outer = function (a) {
+	return {ctor: 'Outer', _0: a};
+};
+var _user$project$Main$Canvas = function (a) {
+	return {ctor: 'Canvas', _0: a};
+};
 var _user$project$Main$motif = function (model) {
 	var getPoints = function (p) {
 		return _elm_lang$core$String$concat(
@@ -8675,7 +8755,7 @@ var _user$project$Main$motif = function (model) {
 			_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 100 100'),
 			_1: {
 				ctor: '::',
-				_0: A2(_elm_lang$html$Html_Events$on, 'mousemove', _user$project$Main$mousePos),
+				_0: _user$project$Main$onMouseMove(_user$project$Main$Canvas),
 				_1: {ctor: '[]'}
 			}
 		},
@@ -8689,7 +8769,15 @@ var _user$project$Main$motif = function (model) {
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$svg$Svg_Attributes$height('100'),
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$style(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'fill: ',
+									_user$project$Main$toColor(model.outerColor))),
+							_1: {ctor: '[]'}
+						}
 					}
 				},
 				{ctor: '[]'}),
@@ -8702,9 +8790,17 @@ var _user$project$Main$motif = function (model) {
 						_0: _elm_lang$svg$Svg_Attributes$class('s1'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$points(
-								getPoints(model.pos1)),
-							_1: {ctor: '[]'}
+							_0: _elm_lang$svg$Svg_Attributes$style(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'fill: ',
+									_user$project$Main$toColor(model.innerColor))),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$points(
+									getPoints(model.pos1)),
+								_1: {ctor: '[]'}
+							}
 						}
 					},
 					{ctor: '[]'}),
@@ -8717,9 +8813,17 @@ var _user$project$Main$motif = function (model) {
 							_0: _elm_lang$svg$Svg_Attributes$class('s2'),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$points(
-									getPoints(model.pos2)),
-								_1: {ctor: '[]'}
+								_0: _elm_lang$svg$Svg_Attributes$style(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										'fill: ',
+										_user$project$Main$toColor(model.innerColor))),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$points(
+										getPoints(model.pos2)),
+									_1: {ctor: '[]'}
+								}
 							}
 						},
 						{ctor: '[]'}),
@@ -8728,13 +8832,18 @@ var _user$project$Main$motif = function (model) {
 			}
 		});
 };
+var _user$project$Main$ToggleStatic = {ctor: 'ToggleStatic'};
 var _user$project$Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
 			_0: _elm_lang$svg$Svg_Attributes$class('main'),
-			_1: {ctor: '[]'}
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$ToggleStatic),
+				_1: {ctor: '[]'}
+			}
 		},
 		{
 			ctor: '::',
@@ -8750,7 +8859,64 @@ var _user$project$Main$view = function (model) {
 					_0: _user$project$Main$motif(model),
 					_1: {ctor: '[]'}
 				}),
-			_1: {ctor: '[]'}
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$class('controls'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$class('outer'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$style(
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											'background-color: ',
+											_user$project$Main$toColor(model.outerColor))),
+									_1: {
+										ctor: '::',
+										_0: _user$project$Main$onMouseMove(_user$project$Main$Outer),
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							{ctor: '[]'}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$class('inner'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$style(
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												'background-color: ',
+												_user$project$Main$toColor(model.innerColor))),
+										_1: {
+											ctor: '::',
+											_0: _user$project$Main$onMouseMove(_user$project$Main$Inner),
+											_1: {ctor: '[]'}
+										}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
 		});
 };
 var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
