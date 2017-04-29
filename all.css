@@ -3,6 +3,11 @@
 	margin-left: 25%;
 }
 
+.banner {
+	font-size: 24pt;
+	font-weight: bold;
+}
+
 .canvas svg {
 	width: 400px;
 	float: left;

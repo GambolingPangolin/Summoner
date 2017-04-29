@@ -1,6 +1,11 @@
-module Main exposing (main)
+module ThreeSquares exposing (
+    Model
+    , Msg(..)
+    , model
+    , update
+    , view)
 
-import Html exposing (Html, beginnerProgram, div)
+import Html exposing (Html, div)
 import Html.Attributes as A
 import Html.Events as E
 import Json.Decode as JD
@@ -24,14 +29,6 @@ type Msg =
     | Canvas(Int,Int)
     | Outer (Int,Int)
     | Inner (Int,Int)
-
--- MAIN declaration
-
-main = Html.beginnerProgram {
-    model = model
-    , update = update
-    , view = view
-    }
 
 -- INITIAL model
 

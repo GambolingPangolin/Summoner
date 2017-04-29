@@ -8601,7 +8601,7 @@ var _elm_lang$svg$Svg_Attributes$accumulate = _elm_lang$virtual_dom$VirtualDom$a
 var _elm_lang$svg$Svg_Attributes$accelerate = _elm_lang$virtual_dom$VirtualDom$attribute('accelerate');
 var _elm_lang$svg$Svg_Attributes$accentHeight = _elm_lang$virtual_dom$VirtualDom$attribute('accent-height');
 
-var _user$project$Main$mousePos = A3(
+var _user$project$ThreeSquares$mousePos = A3(
 	_elm_lang$core$Json_Decode$map2,
 	F2(
 		function (v0, v1) {
@@ -8609,13 +8609,13 @@ var _user$project$Main$mousePos = A3(
 		}),
 	A2(_elm_lang$core$Json_Decode$field, 'pageX', _elm_lang$core$Json_Decode$int),
 	A2(_elm_lang$core$Json_Decode$field, 'pageY', _elm_lang$core$Json_Decode$int));
-var _user$project$Main$onMouseMove = function (f) {
+var _user$project$ThreeSquares$onMouseMove = function (f) {
 	return A2(
 		_elm_lang$html$Html_Events$on,
 		'mousemove',
-		A2(_elm_lang$core$Json_Decode$map, f, _user$project$Main$mousePos));
+		A2(_elm_lang$core$Json_Decode$map, f, _user$project$ThreeSquares$mousePos));
 };
-var _user$project$Main$toColor = function (x) {
+var _user$project$ThreeSquares$toColor = function (x) {
 	var f = function (x) {
 		return ((255 * (400 - (2 * _elm_lang$core$Basics$abs(200 - x)))) / 400) | 0;
 	};
@@ -8649,7 +8649,7 @@ var _user$project$Main$toColor = function (x) {
 						}
 					}))));
 };
-var _user$project$Main$update = F2(
+var _user$project$ThreeSquares$update = F2(
 	function (msg, model) {
 		var _p0 = {ctor: '_Tuple2', _0: model.$static, _1: msg};
 		_v0_4:
@@ -8698,21 +8698,21 @@ var _user$project$Main$update = F2(
 		} while(false);
 		return model;
 	});
-var _user$project$Main$model = {$static: true, pos1: 10, pos2: 33, outerColor: 150, innerColor: 250};
-var _user$project$Main$Model = F5(
+var _user$project$ThreeSquares$model = {$static: true, pos1: 10, pos2: 33, outerColor: 150, innerColor: 250};
+var _user$project$ThreeSquares$Model = F5(
 	function (a, b, c, d, e) {
 		return {$static: a, pos1: b, pos2: c, outerColor: d, innerColor: e};
 	});
-var _user$project$Main$Inner = function (a) {
+var _user$project$ThreeSquares$Inner = function (a) {
 	return {ctor: 'Inner', _0: a};
 };
-var _user$project$Main$Outer = function (a) {
+var _user$project$ThreeSquares$Outer = function (a) {
 	return {ctor: 'Outer', _0: a};
 };
-var _user$project$Main$Canvas = function (a) {
+var _user$project$ThreeSquares$Canvas = function (a) {
 	return {ctor: 'Canvas', _0: a};
 };
-var _user$project$Main$motif = function (model) {
+var _user$project$ThreeSquares$motif = function (model) {
 	var getPoints = function (p) {
 		return _elm_lang$core$String$concat(
 			A2(
@@ -8755,7 +8755,7 @@ var _user$project$Main$motif = function (model) {
 			_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 100 100'),
 			_1: {
 				ctor: '::',
-				_0: _user$project$Main$onMouseMove(_user$project$Main$Canvas),
+				_0: _user$project$ThreeSquares$onMouseMove(_user$project$ThreeSquares$Canvas),
 				_1: {ctor: '[]'}
 			}
 		},
@@ -8775,7 +8775,7 @@ var _user$project$Main$motif = function (model) {
 								A2(
 									_elm_lang$core$Basics_ops['++'],
 									'fill: ',
-									_user$project$Main$toColor(model.outerColor))),
+									_user$project$ThreeSquares$toColor(model.outerColor))),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -8794,7 +8794,7 @@ var _user$project$Main$motif = function (model) {
 								A2(
 									_elm_lang$core$Basics_ops['++'],
 									'fill: ',
-									_user$project$Main$toColor(model.innerColor))),
+									_user$project$ThreeSquares$toColor(model.innerColor))),
 							_1: {
 								ctor: '::',
 								_0: _elm_lang$svg$Svg_Attributes$points(
@@ -8817,7 +8817,7 @@ var _user$project$Main$motif = function (model) {
 									A2(
 										_elm_lang$core$Basics_ops['++'],
 										'fill: ',
-										_user$project$Main$toColor(model.innerColor))),
+										_user$project$ThreeSquares$toColor(model.innerColor))),
 								_1: {
 									ctor: '::',
 									_0: _elm_lang$svg$Svg_Attributes$points(
@@ -8832,8 +8832,8 @@ var _user$project$Main$motif = function (model) {
 			}
 		});
 };
-var _user$project$Main$ToggleStatic = {ctor: 'ToggleStatic'};
-var _user$project$Main$view = function (model) {
+var _user$project$ThreeSquares$ToggleStatic = {ctor: 'ToggleStatic'};
+var _user$project$ThreeSquares$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -8841,7 +8841,7 @@ var _user$project$Main$view = function (model) {
 			_0: _elm_lang$svg$Svg_Attributes$class('main'),
 			_1: {
 				ctor: '::',
-				_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$ToggleStatic),
+				_0: _elm_lang$html$Html_Events$onClick(_user$project$ThreeSquares$ToggleStatic),
 				_1: {ctor: '[]'}
 			}
 		},
@@ -8856,7 +8856,7 @@ var _user$project$Main$view = function (model) {
 				},
 				{
 					ctor: '::',
-					_0: _user$project$Main$motif(model),
+					_0: _user$project$ThreeSquares$motif(model),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
@@ -8881,10 +8881,10 @@ var _user$project$Main$view = function (model) {
 										A2(
 											_elm_lang$core$Basics_ops['++'],
 											'background-color: ',
-											_user$project$Main$toColor(model.outerColor))),
+											_user$project$ThreeSquares$toColor(model.outerColor))),
 									_1: {
 										ctor: '::',
-										_0: _user$project$Main$onMouseMove(_user$project$Main$Outer),
+										_0: _user$project$ThreeSquares$onMouseMove(_user$project$ThreeSquares$Outer),
 										_1: {ctor: '[]'}
 									}
 								}
@@ -8903,10 +8903,10 @@ var _user$project$Main$view = function (model) {
 											A2(
 												_elm_lang$core$Basics_ops['++'],
 												'background-color: ',
-												_user$project$Main$toColor(model.innerColor))),
+												_user$project$ThreeSquares$toColor(model.innerColor))),
 										_1: {
 											ctor: '::',
-											_0: _user$project$Main$onMouseMove(_user$project$Main$Inner),
+											_0: _user$project$ThreeSquares$onMouseMove(_user$project$ThreeSquares$Inner),
 											_1: {ctor: '[]'}
 										}
 									}
@@ -8919,8 +8919,121 @@ var _user$project$Main$view = function (model) {
 			}
 		});
 };
-var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
-	{model: _user$project$Main$model, update: _user$project$Main$update, view: _user$project$Main$view})();
+
+var _user$project$Main$subscriptions = function (_p0) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _user$project$Main$TSModel = function (a) {
+	return {ctor: 'TSModel', _0: a};
+};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p1 = {ctor: '_Tuple2', _0: msg, _1: model};
+		_v0_2:
+		do {
+			if (_p1.ctor === '_Tuple2') {
+				if (_p1._0.ctor === 'LoadComp') {
+					var _p2 = _p1._0._0;
+					if (_p2.ctor === 'ThreeSquares') {
+						return {
+							ctor: '_Tuple2',
+							_0: _user$project$Main$TSModel(_user$project$ThreeSquares$model),
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					} else {
+						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+					}
+				} else {
+					if (_p1._1.ctor === 'TSModel') {
+						return {
+							ctor: '_Tuple2',
+							_0: _user$project$Main$TSModel(
+								A2(_user$project$ThreeSquares$update, _p1._0._0, _p1._1._0)),
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					} else {
+						break _v0_2;
+					}
+				}
+			} else {
+				break _v0_2;
+			}
+		} while(false);
+		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+	});
+var _user$project$Main$Welcome = {ctor: 'Welcome'};
+var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$Welcome, _1: _elm_lang$core$Platform_Cmd$none};
+var _user$project$Main$TSMsg = function (a) {
+	return {ctor: 'TSMsg', _0: a};
+};
+var _user$project$Main$LoadComp = function (a) {
+	return {ctor: 'LoadComp', _0: a};
+};
+var _user$project$Main$Triangulation = {ctor: 'Triangulation'};
+var _user$project$Main$ThreeSquares = {ctor: 'ThreeSquares'};
+var _user$project$Main$welcome = A2(
+	_elm_lang$html$Html$div,
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('main'),
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('banner'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text('Summoner.'),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('complist'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Events$onClick(
+								_user$project$Main$LoadComp(_user$project$Main$ThreeSquares)),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('ThreeSquares'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		}
+	});
+var _user$project$Main$view = function (model) {
+	var _p3 = model;
+	if (_p3.ctor === 'Welcome') {
+		return _user$project$Main$welcome;
+	} else {
+		return A2(
+			_elm_lang$html$Html$map,
+			_user$project$Main$TSMsg,
+			_user$project$ThreeSquares$view(_p3._0));
+	}
+};
+var _user$project$Main$main = _elm_lang$html$Html$program(
+	{init: _user$project$Main$init, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions, view: _user$project$Main$view})();
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
