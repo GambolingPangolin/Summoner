@@ -51,9 +51,9 @@ update msg model =
         (False, Canvas (x,y)) ->
             {model | pos1 = x % 400 // 4, pos2 = y % 400 // 4 }
         (False, Outer (x,y)) ->
-            {model | outerColor = y % 400}
+            {model | outerColor = y}
         (False, Inner (x,y)) ->
-            {model | innerColor = y % 400}
+            {model | innerColor = y}
         _ -> model
 
 -- VIEW
@@ -61,10 +61,10 @@ update msg model =
 toColor : Int -> String
 toColor x =
     let 
-        f x = 255 * (400 - 2 * abs (200 - x)) // 400
-        r = f (x - 133) 
+        f x = 255 * (400 - 2 * abs (200 - (x % 400))) // 400
+        r = f (x - 133)
         g = f x 
-        b = f (x + 133) 
+        b = f (x + 133)
     in
        [r,g,b]
        |> L.map toString
@@ -75,7 +75,7 @@ toColor x =
 view : Model -> Html Msg
 view model =
     div [class "main", E.onClick ToggleStatic] [
-        div [class "canvas"] [motif model]
+        div [class "canvas", title "Click then move your mouse to play with the squares.  Click again to set them."] [motif model]
         , div [class "controls"] [
             div [
                 class "outer"

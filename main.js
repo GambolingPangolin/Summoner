@@ -8617,7 +8617,8 @@ var _user$project$ThreeSquares$onMouseMove = function (f) {
 };
 var _user$project$ThreeSquares$toColor = function (x) {
 	var f = function (x) {
-		return ((255 * (400 - (2 * _elm_lang$core$Basics$abs(200 - x)))) / 400) | 0;
+		return ((255 * (400 - (2 * _elm_lang$core$Basics$abs(
+			200 - A2(_elm_lang$core$Basics_ops['%'], x, 400))))) / 400) | 0;
 	};
 	var r = f(x - 133);
 	var g = f(x);
@@ -8675,9 +8676,7 @@ var _user$project$ThreeSquares$update = F2(
 						if ((_p0._0 === false) && (_p0._1._0.ctor === '_Tuple2')) {
 							return _elm_lang$core$Native_Utils.update(
 								model,
-								{
-									outerColor: A2(_elm_lang$core$Basics_ops['%'], _p0._1._0._1, 400)
-								});
+								{outerColor: _p0._1._0._1});
 						} else {
 							break _v0_4;
 						}
@@ -8685,9 +8684,7 @@ var _user$project$ThreeSquares$update = F2(
 						if ((_p0._0 === false) && (_p0._1._0.ctor === '_Tuple2')) {
 							return _elm_lang$core$Native_Utils.update(
 								model,
-								{
-									innerColor: A2(_elm_lang$core$Basics_ops['%'], _p0._1._0._1, 400)
-								});
+								{innerColor: _p0._1._0._1});
 						} else {
 							break _v0_4;
 						}
@@ -8852,7 +8849,11 @@ var _user$project$ThreeSquares$view = function (model) {
 				{
 					ctor: '::',
 					_0: _elm_lang$svg$Svg_Attributes$class('canvas'),
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$title('Click then move your mouse to play with the squares.  Click again to set them.'),
+						_1: {ctor: '[]'}
+					}
 				},
 				{
 					ctor: '::',
